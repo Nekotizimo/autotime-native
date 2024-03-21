@@ -1,20 +1,23 @@
-import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import { StrictMode } from 'react';
+import { StyleSheet, Text, View, SafeAreaView, StatusBar } from 'react-native';
+import { TimerList } from './components/TimerList';
 
 export default function App() {
+  
+
   return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app!</Text>
-      <StatusBar style="auto" />
-    </View>
+    <StrictMode>
+      <SafeAreaView style={styles.container}>
+        <TimerList></TimerList>
+      </SafeAreaView>
+    </StrictMode>
   );
 }
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
-    alignItems: 'center',
+    backgroundColor: '#ECECEC',
     justifyContent: 'center',
   },
 });

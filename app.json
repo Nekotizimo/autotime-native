@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "react-native-test",
-    "slug": "react-native-test",
+    "name": "autotime-native",
+    "slug": "autotime-native",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",

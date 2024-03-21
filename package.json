@@ -1,5 +1,5 @@
 {
-  "name": "react-native-test",
+  "name": "autotime-native",
   "version": "1.0.0",
   "main": "node_modules/expo/AppEntry.js",
   "scripts": {
@@ -12,7 +12,8 @@
     "expo": "~50.0.14",
     "expo-status-bar": "~1.11.1",
     "react": "18.2.0",
-    "react-native": "0.73.6"
+    "react-native": "0.73.6",
+    "react-timer-hook": "^3.0.7"
   },
   "devDependencies": {
     "@babel/core": "^7.20.0"
