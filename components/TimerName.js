@@ -1,9 +1,7 @@
 import { useState, useRef, createRef } from 'react';
 import { View, TextInput, StyleSheet   } from 'react-native';
 import * as Typography from '../styles/typography'
-// import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-// import { faEdit } from '@fortawesome/free-regular-svg-icons';
-// import ContentEditable from 'react-contenteditable';
+import { FontAwesome6 } from '@expo/vector-icons';
 // import { getFunctions, httpsCallable } from "firebase/functions";
 // import naturalTextToDurationSecs from '../utilities/naturalTextToDurationSecs.js';
 
@@ -100,19 +98,22 @@ const TimerName = (props) => {
         className='content-editable'
         tagName="h4"
       /> */}
-      {/* {autocompleteResults[0] && <div>{autocompleteResults[0]}</div>}
-      {!props.started && <FontAwesomeIcon icon={faEdit} fixedWidth pull="right" color='gray' />} */}
+      {/* {autocompleteResults[0] && <div>{autocompleteResults[0]}</div>} */}
+      {!props.started && <FontAwesome6 name="edit" size={16} color="gray" style={{width: 16}}/>}
     </View>
   );
 }
 
 const styles = StyleSheet.create({
-    layout: {
-      flex: 1,
-    },
-    textInput: {
-      flex: 1
-    }
-  });
+  layout: {
+    flex: 1,
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'flex-start'
+  },
+  textInput: {
+    flex: 1
+  }
+});
 
 export default TimerName;
