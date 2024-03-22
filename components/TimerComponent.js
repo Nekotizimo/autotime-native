@@ -1,9 +1,11 @@
 import { useState } from 'react';
-import { View, Text, StyleSheet, Button } from 'react-native';
+import { View, Text, StyleSheet, Button, Pressable } from 'react-native';
 import { useTimer } from 'react-timer-hook';
 import TimerName from './TimerName.js';
 import TimerNumbers from './TimerNumbers';
 import * as Spacing from '../styles/spacing.js'
+import { FontAwesome6 } from '@expo/vector-icons';
+import { RoundPressable } from './RoundPressable.js';
 
 const TimerComponent = (props) => {
   const [started, setStarted] = useState(false);
@@ -67,9 +69,9 @@ const TimerComponent = (props) => {
             setTimerDuration={setTimerDuration}
             id={props.id}>
           </TimerName>
-          <TimerNumbers 
-            started={started} 
-            totalSeconds={totalSeconds} 
+          <TimerNumbers
+            started={started}
+            totalSeconds={totalSeconds}
             durationInSecs={props.durationInSecs}
             restart={restart}
             setTimerDuration={setTimerDuration}
@@ -77,67 +79,25 @@ const TimerComponent = (props) => {
           </TimerNumbers>
         </View>
         <View style={[styles.buttonContainer]}>
-          <Button 
-            style={{ width: 50, height: 50 }}
-            title="hi :)"
-          />
-          {/* <button
-            className="btn stop-btn"
-            disabled={!started}
-            onClick={handleStop}></button>
-          {!isRunning &&
-            <button
-              className="btn start-btn"
-              disabled={over}
-              onClick={handleStart}></button>}
-          {isRunning &&
-            <button
-              className="btn pause-btn"
-              onClick={handlePause}></button>} */}
+          <RoundPressable style={[styles.stopButton]} disabled={!started} onPress={handleStop}>
+            <FontAwesome6 name="stop" size={20} color="white" />
+          </RoundPressable>
+          {isRunning ?
+          <RoundPressable style={[styles.pauseButton]} disabled={false} onPress={handlePause}>
+            <FontAwesome6 name="pause" size={20} color="white" />
+          </RoundPressable>
+          :
+          <RoundPressable style={[styles.playButton]} disabled={over} onPress={handleStart}>
+            <FontAwesome6 name="play" size={20} color="white" style={{ paddingLeft: 2 }} />
+          </RoundPressable>
+          }
         </View>
       </View>
     </View>
   );
-
-//   return (
-//     <div className="timer">
-//       <div>
-//         <TimerName
-//           started={started}
-//           name={name}
-//           setTimerName={setTimerName}
-//           setTimerDuration={setTimerDuration}
-//           id={id}>
-//         </TimerName>
-//         <TimerNumbers 
-//           started={started} 
-//           totalSeconds={totalSeconds} 
-//           durationInSecs={props.durationInSecs}
-//           restart={restart}
-//           setTimerDuration={setTimerDuration}
-//           id={id}>
-//         </TimerNumbers>
-//       </div>
-//       <div className='btn-container'>
-//         <button
-//           className="btn stop-btn"
-//           disabled={!started}
-//           onClick={handleStop}></button>
-//         {!isRunning &&
-//           <button
-//             className="btn start-btn"
-//             disabled={over}
-//             onClick={handleStart}></button>}
-//         {isRunning &&
-//           <button
-//             className="btn pause-btn"
-//             onClick={handlePause}></button>}
-//       </div>
-//     </div>
-//   )
 };
 
-const styles = StyleSheet.create({
+export const styles = StyleSheet.create({
   timerBox: {
     flex: 1,
     backgroundColor: '#FCFCFC',
@@ -149,17 +109,25 @@ const styles = StyleSheet.create({
   timerInnerBox: {
     flex: 1,
     flexDirection: 'row',
-    justifyContent: 'space-between',
     alignItems: 'center',
-    borderWidth: 1
   },
   nameNumberContainer: {
     flex: 1,
-    borderWidth: 1
   },
   buttonContainer: {
-    borderWidth: 1,
-    width: 100
+    width: 100,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center'
+  },
+  stopButton: {
+    backgroundColor: 'red'
+  },
+  pauseButton: {
+    backgroundColor: 'orange'
+  },
+  playButton: {
+    backgroundColor: 'green'
   }
 });
 
