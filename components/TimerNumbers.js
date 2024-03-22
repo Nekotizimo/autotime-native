@@ -1,30 +1,35 @@
-import { React, createRef } from 'react';
+import { React, useState } from 'react';
 import { View, TextInput } from 'react-native';
 // import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 // import { faEdit } from '@fortawesome/free-regular-svg-icons';
-// import ContentEditable from 'react-contenteditable';
 import durationToText from "../utilities/durationToText";
-// import textToDurationSecs from '../utilities/textToDurationSecs';
+import textToDurationSecs from '../utilities/textToDurationSecs';
 
 const TimerNumbers = (props) => {
-  const timeCERef = createRef();
+  const [durationText, setDurationText] = useState(durationToText(props.totalSeconds));
 
-  // const handleTimeBlur = (e) => {
-  //   const newDuration = textToDurationSecs(e.target.textContent);
-  //   if (newDuration === undefined) { // invalid newDuration
-  //     props.setTimerDuration(props.durationInSecs); // use previous duration
-  //     alert("invalid time"); // TODO : notification
-  //   } else {
-  //     props.setTimerDuration(newDuration); 
-  //   }
-  //   // console.log("time blur");
-  // }
+  const onChangeText = (e) => {
+    setDurationText(e);
+  }
+
+  const onEndEditing = (e) => {
+    const newDuration = textToDurationSecs(e.nativeEvent.text);
+    if (newDuration === undefined) { // invalid newDuration
+      props.setTimerDuration(props.durationInSecs); // use previous duration
+      alert("invalid time"); // TODO : notification
+    } else {
+      props.setTimerDuration(newDuration); 
+      setDurationText(durationToText(newDuration));
+    }
+  }
 
   return (
     <View>
       <TextInput
-        // disabled={props.started}
-        value={durationToText(props.totalSeconds)}
+        readOnly={props.started}
+        value={durationText}
+        onEndEditing={onEndEditing}
+        onChangeText={onChangeText}
       />
     </View>
   )

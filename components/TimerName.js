@@ -28,13 +28,13 @@ import { View, TextInput, StyleSheet   } from 'react-native';
 // const queryQA = httpsCallable(functions, "queryQA");
 
 const TimerName = (props) => {
-  const nameCERef = createRef();
-  const nameRef = useRef(props.name);
   const [autocompleteResults, setAutocompleteResults] = useState([]);
   const [inputTimer, setInputTimer] = useState(null);
-  const setTimerName = props.setTimerName;
-  const setTimerDuration = props.setTimerDuration;
-  const id = props.id;
+
+  const handleNameChange = (e) => {
+    const curName = e;
+    props.setTimerName(curName);
+  }
 
 //   const handleNameChange = (e) => {
 //     const curName = e.target.value;
@@ -86,9 +86,9 @@ const TimerName = (props) => {
     <View style={styles.timerName}>
       <TextInput 
         // style={styles.editable}
-        // disabled={props.started}
-        // onChangeText={handleNameChange}
-        value={nameRef.current}
+        readOnly={props.started}
+        onChangeText={handleNameChange}
+        value={props.name}
       />
       {/* <ContentEditable
         disabled={props.started}

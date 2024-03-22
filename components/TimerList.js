@@ -18,6 +18,22 @@ export function TimerList(props) {
     // const initialValue = JSON.parse(saved);
     // return initialValue || [];
   });
+  // TODO: everything timer gets re-rendered
+
+  // useEffect(() => {
+  //   localStorage.setItem("timers", JSON.stringify(timers));
+  // }, [timers]);
+
+  const updateTimersName = (id, name) => {
+    setTimers(timers.map(t => (t.id === id ? {...t, name: name} : t)));
+  }
+  const updateTimersDuration = (id, durationSecs) => {
+    setTimers(timers.map(t => (t.id === id ? {...t, durationInSeconds: durationSecs} : t)));
+  }
+  // const addTimer = () => {
+  //   const newTimer = new Timer("New timer", 60)
+  //   setTimers([...timers, newTimer]);
+  // }
 
   return (
     <View style={styles.container}>
@@ -27,8 +43,8 @@ export function TimerList(props) {
           const { name, durationInSeconds, id } = item;
           const time = new Date();
           time.setSeconds(time.getSeconds() + durationInSeconds);
-          return <TimerComponent name={name} durationInSecs={durationInSeconds} // updateTimersName={updateTimersName}
-            // updateTimersDuration={updateTimersDuration}
+          return <TimerComponent name={name} durationInSecs={durationInSeconds} updateTimersName={updateTimersName}
+            updateTimersDuration={updateTimersDuration}
             id={id} key={id} expiryTimestamp={time} />;
           }} 
         keyExtractor={timer => timer.id} />

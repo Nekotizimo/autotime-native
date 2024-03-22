@@ -2,7 +2,8 @@ import { View, Pressable, StyleSheet } from 'react-native';
 
 export function RoundPressable(props) {
   return (
-    <Pressable style={[styles.button, ...props.style]} disabled={props.disabled} onPress={props.onPress}>
+    <Pressable style={[styles.button, {width: props.size, height: props.size, borderRadius: props.size / 2}, ...props.style]} 
+      disabled={props.disabled} onPress={props.onPress}>
       {props.children}
       {props.disabled && <View style={[styles.overlay]} />}
     </Pressable>
@@ -13,9 +14,6 @@ const styles = StyleSheet.create({
   button: {
     justifyContent: 'center',
     alignItems: 'center',
-    width: 40,
-    height: 40,
-    borderRadius: 20,
     backgroundColor: 'grey',
   },
   overlay: {

@@ -79,15 +79,15 @@ const TimerComponent = (props) => {
           </TimerNumbers>
         </View>
         <View style={[styles.buttonContainer]}>
-          <RoundPressable style={[styles.stopButton]} disabled={!started} onPress={handleStop}>
+          <RoundPressable style={[styles.stopButton]} size={40} disabled={!started} onPress={handleStop}>
             <FontAwesome6 name="stop" size={20} color="white" />
           </RoundPressable>
           {isRunning ?
-          <RoundPressable style={[styles.pauseButton]} disabled={false} onPress={handlePause}>
+          <RoundPressable style={[styles.pauseButton]} size={40} disabled={false} onPress={handlePause}>
             <FontAwesome6 name="pause" size={20} color="white" />
           </RoundPressable>
           :
-          <RoundPressable style={[styles.playButton]} disabled={over} onPress={handleStart}>
+          <RoundPressable style={[styles.playButton]} size={40} disabled={over} onPress={handleStart}>
             <FontAwesome6 name="play" size={20} color="white" style={{ paddingLeft: 2 }} />
           </RoundPressable>
           }
@@ -115,7 +115,7 @@ export const styles = StyleSheet.create({
     flex: 1,
   },
   buttonContainer: {
-    width: 100,
+    width: 90,
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center'
