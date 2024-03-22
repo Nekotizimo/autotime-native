@@ -102,14 +102,15 @@ export const styles = StyleSheet.create({
     flex: 1,
     backgroundColor: '#FCFCFC',
     height: 100,
-    marginTop: 10,
-    marginBottom: 10,
+    marginTop: 8,
+    marginBottom: 8,
     borderRadius: 15,
   },
   timerInnerBox: {
     flex: 1,
     flexDirection: 'row',
     alignItems: 'center',
+    padding: 8
   },
   nameNumberContainer: {
     flex: 1,

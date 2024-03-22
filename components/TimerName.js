@@ -1,5 +1,6 @@
 import { useState, useRef, createRef } from 'react';
 import { View, TextInput, StyleSheet   } from 'react-native';
+import * as Typography from '../styles/typography'
 // import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 // import { faEdit } from '@fortawesome/free-regular-svg-icons';
 // import ContentEditable from 'react-contenteditable';
@@ -83,9 +84,9 @@ const TimerName = (props) => {
 //   }
 
   return (
-    <View style={styles.timerName}>
+    <View style={styles.layout}>
       <TextInput 
-        // style={styles.editable}
+        style={[styles.textInput, Typography.h3]}
         readOnly={props.started}
         onChangeText={handleNameChange}
         value={props.name}
@@ -106,14 +107,12 @@ const TimerName = (props) => {
 }
 
 const styles = StyleSheet.create({
-    timerName: {
+    layout: {
       flex: 1,
-      backgroundColor: '#FCFCFC',
-      height: 150,
-      marginTop: 10,
-      marginBottom: 10,
-      borderRadius: 15,
     },
+    textInput: {
+      flex: 1
+    }
   });
 
 export default TimerName;

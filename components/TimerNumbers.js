@@ -1,9 +1,10 @@
 import { React, useState } from 'react';
-import { View, TextInput } from 'react-native';
+import { View, TextInput, StyleSheet } from 'react-native';
 // import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 // import { faEdit } from '@fortawesome/free-regular-svg-icons';
 import durationToText from "../utilities/durationToText";
 import textToDurationSecs from '../utilities/textToDurationSecs';
+import * as Typography from '../styles/typography'
 
 const TimerNumbers = (props) => {
   const [durationText, setDurationText] = useState(durationToText(props.totalSeconds));
@@ -24,8 +25,9 @@ const TimerNumbers = (props) => {
   }
 
   return (
-    <View>
+    <View style={styles.layout}>
       <TextInput
+        style={[styles.textInput, Typography.h2]}
         readOnly={props.started}
         value={durationText}
         onEndEditing={onEndEditing}
@@ -44,5 +46,14 @@ const TimerNumbers = (props) => {
     {/* {!props.started && <FontAwesomeIcon icon={faEdit} fixedWidth pull="right" color='gray' />} */}
   // </div>);
 }
+
+const styles = StyleSheet.create({
+  layout: {
+    flex: 1
+  },
+  textInput: {
+    flex: 1
+  }
+})
 
 export default TimerNumbers;
