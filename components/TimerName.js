@@ -1,5 +1,5 @@
-import { useState, useRef, createRef } from 'react';
-import { View, TextInput, StyleSheet   } from 'react-native';
+import { useState } from 'react';
+import { View, Text, StyleSheet   } from 'react-native';
 import * as Typography from '../styles/typography'
 import { FontAwesome6 } from '@expo/vector-icons';
 // import { getFunctions, httpsCallable } from "firebase/functions";
@@ -29,11 +29,6 @@ import { FontAwesome6 } from '@expo/vector-icons';
 const TimerName = (props) => {
   const [autocompleteResults, setAutocompleteResults] = useState([]);
   const [inputTimer, setInputTimer] = useState(null);
-
-  const handleNameChange = (e) => {
-    const curName = e;
-    props.setTimerName(curName);
-  }
 
 //   const handleNameChange = (e) => {
 //     const curName = e.target.value;
@@ -83,23 +78,10 @@ const TimerName = (props) => {
 
   return (
     <View style={styles.layout}>
-      <TextInput 
-        style={[styles.textInput, Typography.h3]}
-        readOnly={props.started}
-        onChangeText={handleNameChange}
-        value={props.name}
-      />
-      {/* <ContentEditable
-        disabled={props.started}
-        innerRef={nameCERef}
-        html={nameRef.current}
-        onChange={handleNameChange}
-        onBlur={handleNameBlur}
-        className='content-editable'
-        tagName="h4"
-      /> */}
+      <Text style={[styles.text, Typography.h3]}>
+        {props.name}
+      </Text>
       {/* {autocompleteResults[0] && <div>{autocompleteResults[0]}</div>} */}
-      {!props.started && <FontAwesome6 name="edit" size={16} color="gray" style={{width: 16}}/>}
     </View>
   );
 }
@@ -111,7 +93,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'flex-start'
   },
-  textInput: {
+  text: {
     flex: 1
   }
 });

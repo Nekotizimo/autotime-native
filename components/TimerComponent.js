@@ -105,6 +105,7 @@ export const styles = StyleSheet.create({
     marginTop: 8,
     marginBottom: 8,
     borderRadius: 15,
+    zIndex: -5
   },
   timerInnerBox: {
     flex: 1,
