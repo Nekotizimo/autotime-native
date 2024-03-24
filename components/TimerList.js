@@ -1,28 +1,46 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { View, FlatList, StyleSheet, StatusBar } from 'react-native';
 import TimerComponent from './TimerComponent';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const testTimers = [
   { name: "Poached Egg", durationInSeconds: 390, id: 1 },
   { name: "Plank", durationInSeconds: 45, id: 2 },
   { name: "how long i last", durationInSeconds: 5, id: 3 },
-  { name: "how long i last", durationInSeconds: 5, id: 4 },
-  { name: "how long i last", durationInSeconds: 5, id: 5 },
 ]
 
 export function TimerList(props) {
-  const [timers, setTimers] = useState(() => {
-    return testTimers;
-    // getting stored timers
-    // const saved = localStorage.getItem("timers");
-    // const initialValue = JSON.parse(saved);
-    // return initialValue || [];
-  });
-  // TODO: everything timer gets re-rendered
+  const [timers, setTimers] = useState(null);
 
-  // useEffect(() => {
-  //   localStorage.setItem("timers", JSON.stringify(timers));
-  // }, [timers]);
+  const getTimers = async () => {
+    try {
+      await AsyncStorage.clear();
+      const jsonValue = await AsyncStorage.getItem('timers');
+      return jsonValue != null ? JSON.parse(jsonValue) : testTimers;
+    } catch (e) {
+      alert(e);
+    }
+  };
+  useEffect(() => {
+    getTimers().then(setTimers);
+  }, []);
+
+  const storeTimers = async () => {
+    try {
+      console.log("store:", timers);
+      const jsonValue = JSON.stringify(timers);
+      await AsyncStorage.setItem('timers', jsonValue);
+    } catch (e) {
+      alert(e);
+    }
+  };
+
+  useEffect(() => {
+    if (timers != null) {
+      storeTimers();
+    }
+      
+  }, [timers]);
 
   const updateTimersName = (id, name) => {
     setTimers(timers.map(t => (t.id === id ? {...t, name: name} : t)));
