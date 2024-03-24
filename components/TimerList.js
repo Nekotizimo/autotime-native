@@ -5,6 +5,7 @@ import { TimerContext } from '../TimerContext';
 
 export function TimerList(props) {
   const { timers, updateTimersDuration, updateTimersName } = useContext(TimerContext);
+  // TODO: seems slow?
 
   return (
     <View style={styles.container}>
