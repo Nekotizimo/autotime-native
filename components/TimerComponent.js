@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { View, Text, StyleSheet, Button, Pressable } from 'react-native';
+import { View, StyleSheet } from 'react-native';
 import { useTimer } from 'react-timer-hook';
 import TimerName from './TimerName.js';
 import TimerNumbers from './TimerNumbers';

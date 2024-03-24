@@ -5,7 +5,7 @@ export function RoundPressable(props) {
     <Pressable style={[styles.button, {width: props.size, height: props.size, borderRadius: props.size / 2}, ...props.style]} 
       disabled={props.disabled} onPress={props.onPress}>
       {props.children}
-      {props.disabled && <View style={[styles.overlay]} />}
+      {props.disabled && <View style={[styles.overlay, {width: props.size, height: props.size, borderRadius: props.size / 2}]} />}
     </Pressable>
   );
 }
@@ -21,9 +21,6 @@ const styles = StyleSheet.create({
     position: 'absolute',
     left: 0,
     top: 0,
-    width: '100%',
-    height: '100%',
-    borderRadius: '50%',
     opacity: 0.3,
     backgroundColor: 'black',
   }
