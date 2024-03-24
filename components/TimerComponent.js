@@ -6,6 +6,7 @@ import TimerNumbers from './TimerNumbers';
 import * as Spacing from '../styles/spacing.js'
 import { FontAwesome6 } from '@expo/vector-icons';
 import { RoundPressable } from './RoundPressable.js';
+import { SwipeableDelete } from './SwipeableDelete.js';
 
 const TimerComponent = (props) => {
   const [started, setStarted] = useState(false);
@@ -59,41 +60,43 @@ const TimerComponent = (props) => {
   }
 
   return (
-    <View style={styles.timerBox}>
-      <View style={[Spacing.margin, styles.timerInnerBox]}>
-        <View style={[styles.nameNumberContainer]}>
-          <TimerName
-            started={started}
-            name={props.name}
-            setTimerName={setTimerName}
-            setTimerDuration={setTimerDuration}
-            id={props.id}>
-          </TimerName>
-          <TimerNumbers
-            started={started}
-            totalSeconds={totalSeconds}
-            durationInSecs={props.durationInSecs}
-            restart={restart}
-            setTimerDuration={setTimerDuration}
-            id={props.id}>
-          </TimerNumbers>
-        </View>
-        <View style={[styles.buttonContainer]}>
-          <RoundPressable style={[styles.stopButton]} size={40} disabled={!started} onPress={handleStop}>
-            <FontAwesome6 name="stop" size={20} color="white" />
-          </RoundPressable>
-          {isRunning ?
-          <RoundPressable style={[styles.pauseButton]} size={40} disabled={false} onPress={handlePause}>
-            <FontAwesome6 name="pause" size={20} color="white" />
-          </RoundPressable>
-          :
-          <RoundPressable style={[styles.playButton]} size={40} disabled={over} onPress={handleStart}>
-            <FontAwesome6 name="play" size={20} color="white" style={{ paddingLeft: 2 }} />
-          </RoundPressable>
-          }
+    <SwipeableDelete style={[{ margin: 8 }]}>
+      <View style={styles.timerBox}>
+        <View style={[Spacing.margin, styles.timerInnerBox]}>
+          <View style={[styles.nameNumberContainer]}>
+            <TimerName
+              started={started}
+              name={props.name}
+              setTimerName={setTimerName}
+              setTimerDuration={setTimerDuration}
+              id={props.id}>
+            </TimerName>
+            <TimerNumbers
+              started={started}
+              totalSeconds={totalSeconds}
+              durationInSecs={props.durationInSecs}
+              restart={restart}
+              setTimerDuration={setTimerDuration}
+              id={props.id}>
+            </TimerNumbers>
+          </View>
+          <View style={[styles.buttonContainer]}>
+            <RoundPressable style={[styles.stopButton]} size={40} disabled={!started} onPress={handleStop}>
+              <FontAwesome6 name="stop" size={20} color="white" />
+            </RoundPressable>
+            {isRunning ?
+            <RoundPressable style={[styles.pauseButton]} size={40} disabled={false} onPress={handlePause}>
+              <FontAwesome6 name="pause" size={20} color="white" />
+            </RoundPressable>
+            :
+            <RoundPressable style={[styles.playButton]} size={40} disabled={over} onPress={handleStart}>
+              <FontAwesome6 name="play" size={20} color="white" style={{ paddingLeft: 2 }} />
+            </RoundPressable>
+            }
+          </View>
         </View>
       </View>
-    </View>
+    </SwipeableDelete>
   );
 };
 

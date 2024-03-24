@@ -8,6 +8,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import 'react-native-get-random-values';
 import { v4 as uuidv4 } from 'uuid';
 import { TimerContext } from './TimerContext';
+import { GestureHandlerRootView } from 'react-native-gesture-handler';
 
 const Stack = createNativeStackNavigator();
 
@@ -71,24 +72,26 @@ export default function App() {
 
   return (
     <StrictMode>
-      <SafeAreaView style={styles.container}>
-        <TimerContext.Provider value={{ timers, updateTimersDuration, updateTimersName }}>
-          <NavigationContainer>
-            <Stack.Navigator>
-              <Stack.Screen name="TimerList" component={TimerList} 
-                options={{ 
-                  title: 'AutoTime',
-                  headerRight: () => (
-                    <Pressable onPress={addTimer}>
-                      <FontAwesome6 name="plus" size={20} color="black" />
-                    </Pressable>
-                  )
-                }} 
-                />
-            </Stack.Navigator>
-          </NavigationContainer>
-        </TimerContext.Provider>
-      </SafeAreaView>
+      <GestureHandlerRootView style={{ flex: 1 }}>
+        <SafeAreaView style={styles.container}>
+          <TimerContext.Provider value={{ timers, updateTimersDuration, updateTimersName }}>
+            <NavigationContainer>
+              <Stack.Navigator>
+                <Stack.Screen name="TimerList" component={TimerList} 
+                  options={{ 
+                    title: 'AutoTime',
+                    headerRight: () => (
+                      <Pressable onPress={addTimer}>
+                        <FontAwesome6 name="plus" size={20} color="black" />
+                      </Pressable>
+                    )
+                  }} 
+                  />
+              </Stack.Navigator>
+            </NavigationContainer>
+          </TimerContext.Provider>
+        </SafeAreaView>
+      </GestureHandlerRootView>
     </StrictMode>
   );
 }
