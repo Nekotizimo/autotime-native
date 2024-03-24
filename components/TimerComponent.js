@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useContext } from 'react';
 import { View, StyleSheet } from 'react-native';
 import { useTimer } from 'react-timer-hook';
 import TimerName from './TimerName.js';
@@ -7,8 +7,11 @@ import * as Spacing from '../styles/spacing.js'
 import { FontAwesome6 } from '@expo/vector-icons';
 import { RoundPressable } from './RoundPressable.js';
 import { SwipeableDelete } from './SwipeableDelete.js';
+import { TimerContext } from '../TimerContext.js';
 
 const TimerComponent = (props) => {
+  const { timers, updateTimersDuration, updateTimersName, deleteTimer } = useContext(TimerContext);
+  // TODO: stop abusing context
   const [started, setStarted] = useState(false);
   const [over, setOver] = useState(false);
   const {
@@ -60,7 +63,7 @@ const TimerComponent = (props) => {
   }
 
   return (
-    <SwipeableDelete style={[{ margin: 8 }]}>
+    <SwipeableDelete style={[{ margin: 8 }]} onPress={() => {deleteTimer(props.id)}}>
       <View style={styles.timerBox}>
         <View style={[Spacing.margin, styles.timerInnerBox]}>
           <View style={[styles.nameNumberContainer]}>

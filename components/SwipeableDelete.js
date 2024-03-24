@@ -8,16 +8,12 @@ export const SwipeableDelete = (props) => {
       inputRange: [0, 1],
       outputRange: [x, 0],
     });
-    const pressHandler = () => {
-      // eslint-disable-next-line no-alert
-      alert(text);
-    };
 
     return (
       <Animated.View style={{ flex: 1, transform: [{ translateX: trans }] }}>
         <RectButton
           style={[styles.rightAction, { backgroundColor: color }, ...props.style]}
-          onPress={pressHandler}>
+          onPress={props.onPress}>
           <Text style={styles.actionText}>{text}</Text>
         </RectButton>
       </Animated.View>
@@ -35,7 +31,8 @@ export const SwipeableDelete = (props) => {
   );
 
   return (
-    <Swipeable style={props.style} renderRightActions={renderRightActions} enableTrackpadTwoFingerGesture={true}>
+    <Swipeable style={props.style} 
+      renderRightActions={renderRightActions} enableTrackpadTwoFingerGesture={true}>
       {props.children}
     </Swipeable>
   )

@@ -4,7 +4,7 @@ import TimerComponent from './TimerComponent';
 import { TimerContext } from '../TimerContext';
 
 export function TimerList(props) {
-  const { timers, updateTimersDuration, updateTimersName } = useContext(TimerContext);
+  const { timers, updateTimersDuration, updateTimersName, deleteTimer } = useContext(TimerContext);
   // TODO: seems slow?
 
   return (

@@ -70,11 +70,17 @@ export default function App() {
     setTimers([...timers, newTimer]);
   }
 
+  const deleteTimer = (id) => {
+    setTimers(timers.filter((timer) => {
+      return timer.id !== id;
+    }));
+  }
+
   return (
     <StrictMode>
       <GestureHandlerRootView style={{ flex: 1 }}>
         <SafeAreaView style={styles.container}>
-          <TimerContext.Provider value={{ timers, updateTimersDuration, updateTimersName }}>
+          <TimerContext.Provider value={{ timers, updateTimersDuration, updateTimersName, deleteTimer }}>
             <NavigationContainer>
               <Stack.Navigator>
                 <Stack.Screen name="TimerList" component={TimerList} 
